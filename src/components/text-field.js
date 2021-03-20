@@ -67,7 +67,11 @@ export class TextField {
    * This function is called by icon container when ?-icon is clicked
    */
   tooltipClicked() {
-    console.log("Tooltip clicked");
+    console.log("Tooltip clicked!");
+  }
+
+  clearButtonClicked() {
+    this.value = "";
   }
 
 

@@ -5,6 +5,18 @@
   min-height: 56px;
 }
 
+.text-field__transparent-bg-color {
+  background-color: transparent !important;
+}
+
+.text-field__transparent-bg-color:hover {
+  background-color: transparent !important;
+}
+
+.text-field__pointer-cursor:hover {
+  cursor: pointer;
+}
+
 .text-field__red-border {
   border-bottom: 1px solid #ff0000;
 }
@@ -62,13 +74,16 @@
   margin-left: auto;
 }
 
-.text-field__container .text-field__icon-container:hover {
-  cursor: pointer;
-}
-
 .text-field__container .text-field__icon-element {
   margin-top: 4px;
   font-size: 19px;
+  color: rgba(5, 5, 5, 0.61);
+}
+
+.text-field__icon-clear {
+  margin-top: 7px;
+  margin-right: 3px;
+  font-size: 22px;
   color: rgba(5, 5, 5, 0.61);
 }
 
