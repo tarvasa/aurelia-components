@@ -2,8 +2,32 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  border-bottom: 1px solid #c0bebe;
   min-height: 56px;
+}
+
+.text-field__red-border {
+  border-bottom: 1px solid #ff0000;
+}
+
+.text-field__normal-border {
+  width: 100%;
+  border-bottom: 1px solid #c0bebe;
+}
+
+.text-field__error-message {
+  color: red;
+}
+
+.text-field__error-message-container-inactive  {
+  max-height: 0px;
+  transition: max-height 1s ease;
+  overflow: hidden;
+}
+
+.text-field__error-message-container-active {
+  max-height: 29px;
+  transition: max-height 1s ease;
+  overflow: hidden;
 }
 
 .text-field__container:hover .text-field__input-container * {

@@ -49,12 +49,19 @@ export class TextField {
   @bindable
   hideSuffixContainer;
 
+  hasBeenEdited = false;
+
   attached(){
 
   }
 
-  
-
+  /**
+   * Changes hasBeenEdited property to true when user writes something into the input element
+   * @param {string} newValue the new value of value attribute
+   */
+  valueChanged(newValue) {
+    if(!this.hasBeenEdited && newValue) this.hasBeenEdited = true;
+  }
 
   /**
    * This function is called by icon container when ?-icon is clicked

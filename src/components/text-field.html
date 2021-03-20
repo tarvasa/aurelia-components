@@ -13,8 +13,16 @@
       </div>
     </div>
     <div class="text-field__input-container">
-      <input class="text-field__input-element" placeholder.to-view="placeholder"></input>
+      <input class="text-field__input-element" placeholder.to-view="placeholder" value.two-way="value"></input>
     </div>
+    <hr
+    class="m-0 p-0 ${(errorMessage !== null && typeof errorMessage !== 'undefined' && !valid) && hasBeenEdited ? 'text-field__red-border' : 'text-field__normal-border' }"
+    >
+    <div
+        class="${(errorMessage !== null && typeof errorMessage !== 'undefined') && hasBeenEdited ? 'text-field__error-message-container-active' : 'text-field__error-message-container-inactive' } m-0 p-0 mt-1"
+      >
+        <p class="text-field__error-message m-0 p-0">${errorMessage}&nbsp;</p>
+      </div>
   </div>
 
 </template>
