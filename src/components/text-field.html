@@ -1,8 +1,31 @@
 <template>
 
   <!--Requirements-->
-  <input> </input>
-  <a></a>
+  <require from="./text-field.css"></require>
 
-  
+  <!--Child components-->
+
+  <div class="text-field__container">
+    <div class="text-field__label-container mb-2">
+      <p class="text-field__label-element m-0 mr-auto">${label}</p>
+      <div class="text-field__icon-container text-field__pointer-cursor" click.trigger="tooltipClicked()">
+        <i class="text-field__icon-element far fa-question-circle"></i>
+      </div>
+    </div>
+    <div class="text-field__input-container">
+      <input class="text-field__input-element" placeholder.to-view="placeholder" value.two-way="value"></input>
+      <div class="text-field__input-icons-container d-flex flex-row-reserve ml-auto">
+        <a class="text-field__transparent-bg-color" click.trigger="clearButtonClicked()"><i class="text-field__icon-clear fas fa-times text-field__transparent-bg-color text-field__pointer-cursor"></i></a>
+      </div>
+    </div>
+    <hr
+    class="m-0 p-0 ${(errorMessage !== null && typeof errorMessage !== 'undefined' && !valid) && hasBeenEdited ? 'text-field__red-border' : 'text-field__normal-border' }"
+    >
+    <div
+        class="${(errorMessage !== null && typeof errorMessage !== 'undefined') && hasBeenEdited ? 'text-field__error-message-container-active' : 'text-field__error-message-container-inactive' } m-0 p-0 mt-1"
+      >
+        <p class="text-field__error-message m-0 p-0">${errorMessage}&nbsp;</p>
+      </div>
+  </div>
+
 </template>
