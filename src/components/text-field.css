@@ -7,7 +7,19 @@
 }
 
 .text-field__container:hover .text-field__input-container * {
-  animation-name: text;
+  animation-name: textFieldHighlight;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.text-field__container:hover .text-field__label-element {
+  animation-name: textFieldLabelHighlight;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.text-field__container:hover .text-field__icon-element {
+  animation-name: textFieldLabelHighlight;
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
@@ -21,8 +33,15 @@
 
 .text-field__container .text-field__icon-container {
   display: flex;
+  flex-direction: row;
   max-height: 100%;
   margin-left: auto;
+}
+
+.text-field__icon-element {
+  margin-top: 4px;
+  font-size: 19px;
+  color: rgba(5, 5, 5, 0.61);
 }
 
 .text-field__label-container .text-field__label-element {
@@ -48,12 +67,22 @@
   outline: none;
 }
 
-@keyframes text {
+@keyframes textFieldHighlight {
   from {
     background-color: white;
   }
 
   to {
-    background-color: #65c6f713;
+    background-color: #85d0f515;
+  }
+}
+
+@keyframes textFieldLabelHighlight {
+  from {
+    color: rgba(5, 5, 5, 0.61);
+  }
+
+  to {
+    color: #58c1f5;
   }
 }
