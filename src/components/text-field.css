@@ -6,20 +6,26 @@
   min-height: 56px;
 }
 
-.text-field__container:hover .text-field__input-container *{
+.text-field__container:hover .text-field__input-container * {
   animation-name: text;
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
 
-.text-field__label-container {
+.text-field__container .text-field__label-container {
   display: flex;
   flex: 1;
   flex-direction: row;
   min-height: 25px;
 }
 
-.text-field__label-container .text-field__label-element{
+.text-field__container .text-field__icon-container {
+  display: flex;
+  max-height: 100%;
+  margin-left: auto;
+}
+
+.text-field__label-container .text-field__label-element {
   color: rgba(5, 5, 5, 0.61);
 }
 
