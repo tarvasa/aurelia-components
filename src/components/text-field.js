@@ -5,7 +5,7 @@ export class TextField {
 
 
   @bindable
-  label = "Tekstikenttä";
+  label;
 
   @bindable
   controller;
@@ -44,9 +44,25 @@ export class TextField {
   showClearButton;
 
   @bindable
-  disable
+  disable;
 
   @bindable
   hideSuffixContainer;
+
+  attached(){
+
+  }
+
+  
+
+
+  /**
+   * This function is called by icon container when ?-icon is clicked
+   */
+  tooltipClicked() {
+    console.log("Tooltip clicked");
+  }
+
+
   
 }
