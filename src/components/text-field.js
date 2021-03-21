@@ -29,9 +29,6 @@ export class TextField {
   for;
 
   @bindable
-  empty;
-
-  @bindable
   autoTrim;
 
   @bindable
@@ -46,9 +43,6 @@ export class TextField {
   @bindable
   disable;
 
-  @bindable
-  hideSuffixContainer;
-
   hasBeenEdited = false;
 
   attached(){
@@ -61,6 +55,15 @@ export class TextField {
    */
   valueChanged(newValue) {
     if(!this.hasBeenEdited && newValue) this.hasBeenEdited = true;
+    if((this.firstLetterUpperCase === "true" || this.firstLetterUpperCase === true) && this.value[0] !== this.value[0].toUpperCase()) {
+      this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);
+    }
+  }
+
+  disableChanged(newValue) {
+    if(!this.textFieldInputElement) return;
+    if(newValue === "true" || newValue === true) this.textFieldInputElement.disabled = true;
+    else this.textFieldInputElement.disabled = false;
   }
 
   /**
