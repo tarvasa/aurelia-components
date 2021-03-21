@@ -55,7 +55,7 @@ export class TextField {
    */
   valueChanged(newValue) {
     if(!this.hasBeenEdited && newValue) this.hasBeenEdited = true;
-    if((this.firstLetterUpperCase === "true" || this.firstLetterUpperCase === true) && this.value[0] !== this.value[0].toUpperCase()) {
+    if((this.firstLetterUpperCase === "true" || this.firstLetterUpperCase === true) && this.value && this.value[0] !== this.value[0].toUpperCase()) {
       this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);
     }
   }
