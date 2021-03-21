@@ -1,9 +1,6 @@
-import {bindable} from "aurelia-framework";
-
+import { bindable } from "aurelia-framework";
 
 export class TextField {
-
-
   @bindable
   label;
 
@@ -29,12 +26,6 @@ export class TextField {
   for;
 
   @bindable
-  empty;
-
-  @bindable
-  autoTrim;
-
-  @bindable
   firstLetterUpperCase;
 
   @bindable
@@ -46,26 +37,36 @@ export class TextField {
   @bindable
   disable;
 
-  @bindable
-  hideSuffixContainer;
-
   hasBeenEdited = false;
 
-  attached(){
-
-  }
-
   /**
-   * Changes hasBeenEdited property to true when user writes something into the input element
+   * Changes the hasBeenEdited property to true when user writes something into the input element
    * @param {string} newValue the new value of value attribute
    */
   valueChanged(newValue) {
-    if(!this.hasBeenEdited && newValue) this.hasBeenEdited = true;
+    if (!this.hasBeenEdited && newValue) this.hasBeenEdited = true;
+    if (
+      (this.firstLetterUpperCase === "true" ||
+        this.firstLetterUpperCase === true) &&
+      this.value &&
+      this.value[0] !== this.value[0].toUpperCase()
+    ) {
+      this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);
+    }
   }
 
   /**
-   * This function is called by icon container when ?-icon is clicked
+   * Disables input element
+   * @param {string} newValue
    */
+  disableChanged(newValue) {
+    if (!this.textFieldInputElement) return;
+    if (newValue === "true" || newValue === true)
+      this.textFieldInputElement.disabled = true;
+    else this.textFieldInputElement.disabled = false;
+  }
+
+  // This function is called by icon container when ?-icon is clicked
   tooltipClicked() {
     console.log("Tooltip clicked!");
   }
@@ -73,7 +74,4 @@ export class TextField {
   clearButtonClicked() {
     this.value = "";
   }
-
-
-  
 }

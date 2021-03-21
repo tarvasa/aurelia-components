@@ -81,8 +81,6 @@
 }
 
 .text-field__icon-clear {
-  margin-top: 7px;
-  margin-right: 3px;
   font-size: 22px;
   color: rgba(5, 5, 5, 0.61);
 }
@@ -112,6 +110,22 @@
 
 .text-field__container input:focus {
   outline: none;
+}
+
+.text-field__container div[slot="suffix-container"] {
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 @keyframes textFieldHighlight {
