@@ -45,3 +45,20 @@
 .checkbox__container .checkbox__label:hover {
   cursor: pointer;
 }
+
+.checkbox__error-message-container {
+  height: 0px;
+  transition: height 1s;
+  overflow: hidden;
+}
+
+.error-message-active {
+  height: 28px;
+}
+
+.checkbox__error-message {
+  margin: 0;
+  padding-left: 30px;
+  font-size: 15px;
+  color: rgba(255, 0, 0, 0.781);
+}

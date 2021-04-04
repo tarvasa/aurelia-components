@@ -7,4 +7,7 @@
     <input class="checkbox__input" type="checkbox" id="checkboxInput" ref="checkboxInput" value.bind="value">
     <label class="checkbox__label" for="checkboxInput">${name}</label>
   </div>
+  <div class="checkbox__error-message-container ${errorMessage ? 'error-message-active' : ''}">
+    <p class="checkbox__error-message">${errorMessage}</p>
+  </div>
 </template>

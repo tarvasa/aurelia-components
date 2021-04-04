@@ -7,6 +7,9 @@ export class Checkbox {
   @bindable
   value;
 
+  @bindable
+  errorMessage;
+
   isAttached = false;
 
   attached() {
