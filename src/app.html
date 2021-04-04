@@ -1,6 +1,5 @@
 <template>
   <!-- Requirements -->
-  <require from="./components/text-field"></require>
   <require from="./app.css"></require>
 
   <!-- Child components-->
@@ -9,6 +8,7 @@
     <div clas="row">
       <div class="col-md-3 mt-4">
         <text-field
+        class="mb-3"
         label="Otsikko"
         placeholder="Kirjoite teksti tähän"
         show-clear-button.bind="true"
@@ -17,6 +17,9 @@
         allow-only-numbers.bind = "false"
         >
       </text-field>
+      <checkbox 
+      name="Checkbox label"
+      ></checkbox>
       </div>
     </div>
   </div>
