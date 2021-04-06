@@ -1,11 +1,11 @@
-import { inject, bindable } from "aurelia-framework";
+import { inject, bindable } from 'aurelia-framework';
 
 export class Checkbox {
   @bindable
   name;
 
   @bindable
-  value;
+  checked;
 
   @bindable
   errorMessage;
@@ -14,12 +14,5 @@ export class Checkbox {
 
   attached() {
     this.isAttached = true;
-    this.initialize();
   }
-
-  initialize = () => {
-    this.checkboxInput.addEventListener("change", () => {
-      this.value = this.checkboxInput.checked;
-    });
-  };
 }
