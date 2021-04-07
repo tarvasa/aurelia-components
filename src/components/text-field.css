@@ -43,19 +43,19 @@
 }
 
 .text-field__container:hover .text-field__input-container * {
-  animation-name: textFieldHighlight;
+  animation-name: textFieldInputHighlight;
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
 
 .text-field__container:hover .text-field__label-element {
-  animation-name: textFieldLabelHighlight;
+  animation-name: textFieldBlueHighlight ;
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
 
 .text-field__container:hover .text-field__tooltip-icon {
-  animation-name: textFieldLabelHighlight;
+  animation-name: textFieldBlueHighlight ;
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
@@ -90,7 +90,7 @@
 }
 
 .text-field__container:hover .text-field__icon-clear {
-  animation-name: textFieldLabelHighlight;
+  animation-name: comboboxBlueHighlight;
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
@@ -142,7 +142,7 @@ input[type=number] {
   color: rgba(255, 0, 0, 0.692);
 }
 
-@keyframes textFieldHighlight {
+@keyframes textFieldInputHighlight {
   from {
     background-color: white;
   }
@@ -152,7 +152,7 @@ input[type=number] {
   }
 }
 
-@keyframes textFieldLabelHighlight {
+@keyframes textFieldBlueHighlight {
   from {
     color: rgba(5, 5, 5, 0.61);
   }
