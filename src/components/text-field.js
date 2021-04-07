@@ -17,9 +17,6 @@ export class TextField {
   errorMessage;
 
   @bindable
-  valid;
-
-  @bindable
   placeholder;
 
   @bindable
@@ -36,6 +33,9 @@ export class TextField {
 
   @bindable
   disable;
+
+  @bindable
+  hideSuffixContainer = false;
 
   hasBeenEdited = false;
 

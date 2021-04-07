@@ -5,7 +5,7 @@
   <!--Child components-->
   <div class="text-field__container">
     <div class="text-field__label-container mb-2">
-      <p class="text-field__label-element m-0 mr-auto">${label}</p>
+      <p class="text-field__label-element m-0 mr-auto">${label}<span class="text-field__required" if.bind="required">&nbsp; &#42;</span></p>
       <div
         class="text-field__icon-container text-field__pointer-cursor"
         click.trigger="tooltipClicked()"
@@ -33,7 +33,7 @@
             class="text-field__icon-clear fas fa-times text-field__transparent-bg-color text-field__pointer-cursor"
           ></i
         ></a>
-        <slot name="suffix-container"> </slot>
+        <slot name="suffix-container" if.bind="hideSuffixContainer"> </slot>
       </div>
     </div>
     <hr
