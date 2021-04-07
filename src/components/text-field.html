@@ -25,7 +25,7 @@
         class="text-field__input-element"
         disabled="${disable === true ? true : undefined}"
         placeholder.to-view="placeholder"
-        value.two-way="value"
+        value.two-way="value & throttle"
         type="${allowOnlyNumbers === true ? 'number' : 'text'}"
       />
       <div

@@ -8,18 +8,29 @@
     <div clas="row">
       <div class="col-md-3 mt-4">
         <text-field
-        class="mb-3"
-        label="Otsikko"
-        placeholder="Kirjoite teksti tähän"
-        show-clear-button.bind="true"
-        disable.bind = "false"
-        first-letter-upper-case.bind = "true"
-        allow-only-numbers.bind = "false"
+          class="mb-3"
+          label="Otsikko"
+          placeholder="Kirjoita teksti tähän"
+          show-clear-button.bind="true"
+          disable.bind="false"
+          first-letter-upper-case.bind="true"
+          allow-only-numbers.bind="false"
         >
-      </text-field>
-      <checkbox 
-      name="Checkbox label"
-      ></checkbox>
+        </text-field>
+        <checkbox class="m-2" name="Checkbox label"></checkbox>
+        <combobox
+        label="Kunta"
+        placeholder="Valitse"
+        show-clear-button.bind="true"
+        required.bind="true"
+        language="en"
+        for="municipality"
+        first-letter-upper-case.bind="true"
+        allow-only-numbers.bind="false"
+        disable.bind="false"
+        disable-custom-values.bind="false"
+        hide-suffix-container.bind="false"
+        ></combobox>
       </div>
     </div>
   </div>
