@@ -1,4 +1,5 @@
 .text-field__container {
+  box-sizing: border-box;
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -103,11 +104,17 @@
   color: rgba(5, 5, 5, 0.61);
 }
 
+.text-field__input-icons-container {
+  box-sizing: border-box;
+  height: 100%;
+  overflow: hidden;
+}
+
 .text-field__input-container {
   display: flex;
   flex: 1;
   flex-direction: row;
-  min-height: 36px;
+  min-height: 38px;
 }
 
 .text-field__container input {
