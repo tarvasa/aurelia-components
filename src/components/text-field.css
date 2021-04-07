@@ -54,7 +54,7 @@
   animation-fill-mode: forwards;
 }
 
-.text-field__container:hover .text-field__icon-element {
+.text-field__container:hover .text-field__tooltip-icon {
   animation-name: textFieldLabelHighlight;
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
@@ -67,22 +67,32 @@
   min-height: 25px;
 }
 
-.text-field__container .text-field__icon-container {
+.text-field__container .text-field__label-icon-container {
   display: flex;
   flex-direction: row;
   max-height: 100%;
   margin-left: auto;
 }
 
-.text-field__container .text-field__icon-element {
+.text-field__container .text-field__tooltip-icon {
   margin-top: 4px;
-  font-size: 19px;
+  font-size: 20px;
   color: rgba(5, 5, 5, 0.61);
+}
+
+.text-field__tooltip-icon-link {
+  padding-right: 5px;
 }
 
 .text-field__icon-clear {
   font-size: 22px;
   color: rgba(5, 5, 5, 0.61);
+}
+
+.text-field__container:hover .text-field__icon-clear {
+  animation-name: textFieldLabelHighlight;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
 }
 
 .text-field__tooltip-element-label {
@@ -126,6 +136,10 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+.text-field__required {
+  color: rgba(255, 0, 0, 0.692);
 }
 
 @keyframes textFieldHighlight {

@@ -5,12 +5,18 @@
   <!--Child components-->
   <div class="text-field__container">
     <div class="text-field__label-container mb-2">
-      <p class="text-field__label-element m-0 mr-auto">${label}<span class="text-field__required" if.bind="required">&nbsp; &#42;</span></p>
-      <div
-        class="text-field__icon-container text-field__pointer-cursor"
-        click.trigger="tooltipClicked()"
-      >
-        <i class="text-field__icon-element far fa-question-circle"></i>
+      <p class="text-field__label-element m-0 mr-auto">
+        ${label}<span class="text-field__required" if.bind="required"
+          >&nbsp; &#42;</span
+        >
+      </p>
+      <div class="text-field__label-icon-container text-field__pointer-cursor">
+        <a
+          class="text-field__tooltip-icon-link text-field__transparent-bg-color d-flex flex-row text-decoration-none"
+          click.delegate="tooltipClicked()"
+        >
+          <i class="text-field__tooltip-icon far fa-question-circle"></i>
+        </a>
       </div>
     </div>
     <div class="text-field__input-container">

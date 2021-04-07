@@ -57,7 +57,6 @@ export class TextField {
 
   // This function is called by icon container when ?-icon is clicked
   tooltipClicked() {
-
   }
 
   clearButtonClicked() {
