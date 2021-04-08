@@ -5,6 +5,7 @@
   <!--Content-->
   <div class="combobox__container">
     <text-field
+      ref="comboboxTextField"
       class="combobox__text-field"
       placeholder.to-view="placeholder"
       label.to-view="label"
@@ -18,7 +19,11 @@
       hide-suffix-container.to-view="hideSuffixContainer"
       for.to-view="for"
     >
-      <div class="combobox__suffix-container" slot="suffix-container">
+      <div
+        class="combobox__suffix-container"
+        slot="suffix-container"
+        ref="comboboxSuffixContainer"
+      >
         <a
           class="combobox__transparent-bg-color d-flex align-items-center m-2 text-decoration-none"
           click.trigger="dropDownListIconClicked()"
@@ -26,6 +31,24 @@
             class="combobox__drop-down-icon-list fas fa-angle-down combobox__transparent-bg-color text-decoration-none combobox__pointer-cursor"
           ></i
         ></a>
+      </div>
+      <div
+        class="combobox__drop-down-list-container"
+        slot="drop-down-list-container"
+        ref="dropDownListContainer"
+      >
+        <div
+          class="combobox__drop-down-list d-flex flex-column"
+          show.bind="dropDownListOpened"
+        >
+          <div
+            class="combobox__drop-down-list-item d-flex align-items-center"
+            repeat.for="item of _combobox_items"
+            click.trigger="itemSelected(item)"
+          >
+            <p class="combobox__drop-down-list-item-content">${item}</p>
+          </div>
+        </div>
       </div>
     </text-field>
   </div>
