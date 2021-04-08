@@ -45,6 +45,7 @@
     <hr
       class="m-0 p-0 ${errorMessage && hasBeenEdited ? 'text-field__red-border' : 'text-field__normal-border' }"
     />
+    <slot name="drop-down-list-container"></slot>
     <div
       class="${errorMessage && hasBeenEdited ? 'text-field__error-message-container-active' : 'text-field__error-message-container-inactive' } m-0 p-0 mt-1"
     >
