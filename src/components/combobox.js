@@ -55,6 +55,5 @@ export class Combobox {
   }
 
   valueChanged(newValue) {
-    console.log("New Value  - combobox ", newValue);
   }
 }

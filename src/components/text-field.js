@@ -46,21 +46,18 @@ export class TextField {
    * @param {string} newValue the new value of value attribute
    */
   valueChanged(newValue) {
-    console.log("newValue: " + newValue, "value: " + this.value);
     if (newValue && this.showClearButton) this.activateClearButton = true;
     else this.activateClearButton = false;
     if (!this.hasBeenEdited && newValue) this.hasBeenEdited = true;
-    if (this.firstLetterUpperCase) setTimeout(() => this.toUpperLetter(), 5000);
-  }
-
-  toUpperLetter = () => {
     if (
+      this.firstLetterUpperCase &&
       this.value &&
       this.value[0] !== this.value[0].toUpperCase()
     ) {
-      this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);
+      // Use timeout until solution is found
+      setTimeout(() => this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1), 200);
     }
-  };
+  }
 
   // This function is called by icon container when ?-icon is clicked
   tooltipClicked() {}
