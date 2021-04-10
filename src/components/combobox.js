@@ -1,31 +1,44 @@
 import { inject, bindable } from "aurelia-framework";
 import $ from "jquery";
+import { thisExpression } from "@babel/types";
 
 export class Combobox {
   @bindable
   label;
+
   @bindable
   controller;
+
   @bindable
   required;
+
   @bindable
   value;
+
   @bindable
   language;
+
   @bindable
   errorMessage;
+
   @bindable
   placeholder;
+
   @bindable
   for;
+
   @bindable
   items;
+
   @bindable
   showClearButton;
+
   @bindable
   firstLetterUpperCase;
+
   @bindable
   allowOnlyNumbers;
+
   /**
    * Function with following parameters
    * @param {number} pageNumber page number (=index)
@@ -34,10 +47,10 @@ export class Combobox {
    */
   @bindable
   dataProvider;
+
   @bindable
   disable;
-  @bindable
-  disableCustomValues;
+
   /**
    * Function with following parameters
    * @param {string} filter filter
@@ -45,16 +58,18 @@ export class Combobox {
    */
   @bindable
   customFilter;
+
   @bindable
   hideSuffixContainer;
+
   @bindable
   dropDownListOpened = false;
 
   isAttached = false;
-  _items_are_valid = false;
-  _combobox_items = [];
-  _pageSize = 50;
-  _maxItemSize;
+
+  _itemsAreValid = false;
+
+  _comboboxItems = [];
 
   attached() {
     this.isAttached = true;
@@ -62,23 +77,25 @@ export class Combobox {
   }
 
   initialize() {
-    // Listener for closing the drop down list when anything outside of it is clicked
+    // A listener for closing the drop down list whenever anything outside of it is clicked
     document.body.addEventListener("mouseup", (e) => {
+      let container = this.comboboxUpperContainer.parentElement;
       if (
-        typeof e.target.className === "string" &&
-        e.target.className.includes("text-field__input-element")
-      ) {
-        if (!this.dropDownListOpened) this.dropDownListOpened = true;
-      }
-      if (this.dropDownListOpened === false) return;
-      if (
-        !$(this.dropDownListContainer.className).is(e.target) &&
-        $(this.dropDownListContainer).has(e.target).length === 0 &&
-        $(this.comboboxTextField).has(e.target).length === 0
+        this.dropDownListOpened &&
+        container !== event.target &&
+        !container.contains(event.target)
       ) {
         this.dropDownListOpened = false;
       }
     });
+  }
+
+  /**
+   * LISTENERS (CLICKED/SELECTED) FUNCTIONS
+   */
+
+  dropDownListIconClicked() {
+    this.dropDownListOpened = !this.dropDownListOpened;
   }
 
   itemSelected(newValue) {
@@ -86,64 +103,42 @@ export class Combobox {
     this.dropDownListOpened = false;
   }
 
-  dropDownListOpenedChanged(newValue) {
-    if (newValue) return;
-  }
+  /**
+   * CHANGED FUNCTIONS
+   */
 
-  dropDownListIconClicked() {
-    this.dropDownListOpened = true;
-  }
-
-  valueChanged(newValue, oldValue) {
+  async valueChanged(newValue, oldValue) {
     // Open drop down list when value is not empty
-    if (oldValue && newValue.length === 1) this.dropDownListOpened = true;
-    // Routing filtering
-    this.applyFiltering();
-  }
-
-  // async fetchItems() {
-  //   if (this.dataProvider[Symbol.toStringTag] === "AsyncFunction") {
-  //     let nextPageNumber = Math.floor(this._combobox_items / this._pageSize);
-  //     if (
-  //       this._numberOfItems &&
-  //       this._combobox_items.length === this._numberOfItems
-  //     )
-  //       return;
-  //     let [items, numberOfItems] = await this.dataProvider(
-  //       nextPageNumber,
-  //       this._pageSize,
-  //       this.value
-  //     );
-  //     this._numberOfItems = numberOfItems;
-  //     if (
-  //       !Array.isArray(items) ||
-  //       items.length === 0 ||
-  //       !this.isReturnedItemsValid(items)
-  //     ) {
-  //       this._combobox_items = [];
-  //       return;
-  //     }
-  //     if (nextPageNumber === 0)
-  //       this._combobox_items = Array(numberOfItems).fill("");
-  //     let nextEmptyIndex = this._combobox_items.indexOf("");
-  //     this._combobox_items = this._combobox_items
-  //       .splice(0, nextEmptyIndex)
-  //       .append(items)
-  //       .append(
-  //         this._combobox_items.splice(
-  //           nextEmptyIndex + items.length,
-  //           this._combobox_items.length + 1
-  //         )
-  //       );
-  //   }
-  // }
-
-  itemsChanged(newValue) {
-    this.checkItemsValidity(newValue);
-    if (this._items_are_valid) {
+    if (newValue.length === 1) this.dropDownListOpened = true;
+    if (!this.dataProvider) {
+      // Routing filtering
       this.applyFiltering();
+    } else {
+      let tempItems = await this.dataProvider(this.value);
+      if (this._isReturnedItemsValid(tempItems)) this._comboboxItems = tempItems;
     }
   }
+
+  async dropDownListOpenedChanged(newValue, oldValue) {
+    if (!oldValue && newValue && this.dataProvider) {
+      let tempItems = await this.dataProvider(this.value);
+      if (this._isReturnedItemsValid(tempItems)) this._comboboxItems = tempItems;
+    }
+  }
+
+  async itemsChanged(newValue) {
+    // Return if data provider is provided
+    if (this.dataProvider) return;
+    // If items attribute has an array of items, move them to the _comboboxItems (view)
+    if (Array.isArray(newValue)) {
+      this._checkItemsValidity(newValue);
+      if (this._itemsAreValid) this.applyFiltering();
+    }
+  }
+
+  /**
+   * FILTERING FUNCTIONS
+   */
 
   applyFiltering() {
     if (!this.customFilter) this.applyDefaultFiltering();
@@ -151,46 +146,51 @@ export class Combobox {
   }
 
   applyDefaultFiltering() {
-    if (this.value && this._items_are_valid) {
-      let tempValidItems = [];
+    if (this.value && this._itemsAreValid) {
+      const tempValidItems = [];
       this.items.forEach((e) => {
-        if (e.toLowerCase().includes(this.value.toLowerCase()))
-          tempValidItems.push(e);
+        if (e.toLowerCase().includes(this.value.toLowerCase())) tempValidItems.push(e);
       });
-      this._combobox_items = tempValidItems;
-    } else if (this._items_are_valid) {
-      this._combobox_items = this.items;
+      this._comboboxItems = tempValidItems;
+    } else if (this._itemsAreValid) {
+      this._comboboxItems = this.items;
     }
   }
 
   applyCustomFiltering() {
-    if (this._items_are_valid) {
-      let customFilterItems = this.customFilter(this.value, this.items);
-      if (
-        customFilterItems &&
-        Array.isArray(customFilterItems) &&
-        this.isReturnedItemsValid(customFilterItems)
-      ) {
-        this._combobox_items = customFilterItems;
+    if (this._itemsAreValid) {
+      const customFilterItems = this.customFilter(this.value, this.items);
+      if (this._isArrayEmpty(customFilterItems) && this._isReturnedItemsValid(customFilterItems)) {
+        this._comboboxItems = customFilterItems;
       } else {
-        this._combobox_items = [];
+        this._comboboxItems = [];
       }
     }
   }
 
   /**
-   * VALIDATION FUNCTIONS
+   * VALIDATION AND UTILITY FUNCTIONS
    */
 
-  checkItemsValidity(newItems) {
+  _checkItemsValidity(newItems) {
     if (Array.isArray(newItems)) {
-      this._items_are_valid = !newItems.some((e) => typeof e !== "string");
-    } else this._items_are_valid = false;
+      this._itemsAreValid = !newItems.some((e) => typeof e !== "string");
+    } else this._itemsAreValid = false;
   }
 
-  isReturnedItemsValid(customFilterItems) {
+  _isReturnedItemsValid(customFilterItems) {
     if (Array.isArray(customFilterItems)) {
       return !customFilterItems.some((e) => typeof e !== "string");
-    } else return false;
+    }
+    return false;
+  }
+
+  _isArrayEmpty(array) {
+    return Array.isArray(array) && array.length === 0;
+  }
+
+  _has(nodeList, selector) {
+    console.log(Array.from(nodeList).filter((e) => e.querySelector(selector)));
+    return Array.from(nodeList).filter((e) => e.querySelector(selector));
   }
 }
