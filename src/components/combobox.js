@@ -160,7 +160,7 @@ export class Combobox {
   applyCustomFiltering() {
     if (this._itemsAreValid) {
       const customFilterItems = this.customFilter(this.value, this.items);
-      if (this._isArrayEmpty(customFilterItems) && this._isReturnedItemsValid(customFilterItems)) {
+      if (!this._isArrayEmpty(customFilterItems) && this._isReturnedItemsValid(customFilterItems)) {
         this._comboboxItems = customFilterItems;
       } else {
         this._comboboxItems = [];
