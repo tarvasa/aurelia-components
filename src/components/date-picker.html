@@ -1,0 +1,27 @@
+<template>
+  <!--Requirements-->
+  <require from="./date-picker.css"></require>
+
+  <!--Child components-->
+  <div class="date-picker__container d-flex flex-column m-0 p-0">
+    <div class="date-picker__input-container d-flex flex-row" >
+      <text-field
+      class="mb-3"
+      label="Päivämäärä"
+      placeholder="pp.kk.vvvv (esim.01.01.2021)"
+      show-clear-button.bind="true"
+      disable.bind="false"
+      first-letter-upper-case.bind="true"
+      allow-only-numbers.bind="false"
+      >
+      </text-field>
+      <div class="text-field__transparent-bg-color d-flex align-items-center m-2 text-decoration-none">
+        <a class="btn btn-default btn-sm" 
+        click.trigger="calendarClicked()">
+          <i class="fa fa-calendar fa-lg" aria-hidden="true">
+          </i>
+        </a>
+      </div>
+    </div>
+  </div>
+</template>

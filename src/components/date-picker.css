@@ -1,0 +1,170 @@
+.text-field__container {
+  box-sizing: border-box;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 56px;
+}
+
+.text-field__transparent-bg-color {
+  background-color: transparent !important;
+}
+
+.text-field__transparent-bg-color:hover {
+  background-color: transparent !important;
+}
+
+.text-field__pointer-cursor:hover {
+  cursor: pointer;
+}
+
+.text-field__red-border {
+  border-bottom: 1px solid #ff0000;
+}
+
+.text-field__normal-border {
+  width: 100%;
+  border-bottom: 1px solid #c0bebe;
+}
+
+.text-field__error-message {
+  color: red;
+}
+
+.text-field__error-message-container-inactive  {
+  max-height: 0px;
+  transition: max-height 1s ease;
+  overflow: hidden;
+}
+
+.text-field__error-message-container-active {
+  max-height: 29px;
+  transition: max-height 1s ease;
+  overflow: hidden;
+}
+
+.text-field__container:hover .date-picker__input-container * {
+  animation-name: textFieldInputHighlight;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.text-field__container:hover .text-field__label-element {
+  animation-name: textFieldBlueHighlight ;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.text-field__container:hover .text-field__tooltip-icon {
+  animation-name: textFieldBlueHighlight ;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.text-field__container .text-field__label-container {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  min-height: 25px;
+}
+
+.text-field__container .text-field__label-icon-container {
+  display: flex;
+  flex-direction: row;
+  max-height: 100%;
+  margin-left: auto;
+}
+
+.text-field__container .text-field__tooltip-icon {
+  margin-top: 4px;
+  font-size: 20px;
+  color: rgba(5, 5, 5, 0.61);
+}
+
+.text-field__tooltip-icon-link {
+  padding-right: 5px;
+}
+
+.text-field__icon-clear {
+  font-size: 22px;
+  color: rgba(5, 5, 5, 0.61);
+}
+
+.text-field__container:hover .text-field__icon-clear {
+  animation-name: comboboxBlueHighlight;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.text-field__tooltip-element-label {
+  font-weight: bold;
+}
+
+.text-field__label-container .text-field__label-element {
+  color: rgba(5, 5, 5, 0.61);
+}
+
+.text-field__input-icons-container {
+  box-sizing: border-box;
+  height: 100%;
+  overflow: hidden;
+}
+
+.date-picker__input-container {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  min-height: 38px;
+}
+
+.text-field__container input {
+  display: flex;
+  flex: 1;
+
+  box-shadow: none;
+  border: none;
+}
+
+.text-field__container input:focus {
+  outline: none;
+}
+
+.text-field__container div[slot="suffix-container"] {
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.text-field__required {
+  color: rgba(255, 0, 0, 0.692);
+}
+
+@keyframes textFieldInputHighlight {
+  from {
+    background-color: white;
+  }
+
+  to {
+    background-color: #85d0f515;
+  }
+}
+
+@keyframes textFieldBlueHighlight {
+  from {
+    color: rgba(5, 5, 5, 0.61);
+  }
+
+  to {
+    color: #58c1f5;
+  }
+}
