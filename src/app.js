@@ -1,4 +1,4 @@
-import '@babel/polyfill';
+//import '@babel/polyfill';
 
 export class App {
   message = 'Hello World!';

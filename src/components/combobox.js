@@ -1,6 +1,6 @@
-import { inject, bindable } from "aurelia-framework";
-import $ from "jquery";
-import { thisExpression } from "@babel/types";
+/*import { inject, bindable } from "aurelia-framework";
+//import $ from "jquery";
+//import { thisExpression } from "@babel/types";
 
 export class Combobox {
   @bindable
@@ -45,6 +45,7 @@ export class Combobox {
    * @param {number} pageSize number of items fetched at a time from the dataprovider.
    * @param {string} filter filter
    */
+  /*
   @bindable
   dataProvider;
 
@@ -56,6 +57,7 @@ export class Combobox {
    * @param {string} filter filter
    * @param {Array} items items to be filtered
    */
+  /*
   @bindable
   customFilter;
 
@@ -93,7 +95,7 @@ export class Combobox {
   /**
    * LISTENERS (CLICKED/SELECTED) FUNCTIONS
    */
-
+/*
   dropDownListIconClicked() {
     this.dropDownListOpened = !this.dropDownListOpened;
   }
@@ -106,7 +108,7 @@ export class Combobox {
   /**
    * CHANGED FUNCTIONS
    */
-
+/*
   async valueChanged(newValue, oldValue) {
     // Open drop down list when value is not empty
     if (newValue.length === 1) this.dropDownListOpened = true;
@@ -139,7 +141,7 @@ export class Combobox {
   /**
    * FILTERING FUNCTIONS
    */
-
+/** 
   applyFiltering() {
     if (!this.customFilter) this.applyDefaultFiltering();
     else this.applyCustomFiltering();
@@ -171,7 +173,7 @@ export class Combobox {
   /**
    * VALIDATION AND UTILITY FUNCTIONS
    */
-
+/*
   _checkItemsValidity(newItems) {
     if (Array.isArray(newItems)) {
       this._itemsAreValid = !newItems.some((e) => typeof e !== "string");
@@ -194,3 +196,4 @@ export class Combobox {
     return Array.from(nodeList).filter((e) => e.querySelector(selector));
   }
 }
+*/
