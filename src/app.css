@@ -6,4 +6,5 @@ text-field {
 body {
   display: flex;
   flex: 1;
+  background-color: cornflowerblue;
 }

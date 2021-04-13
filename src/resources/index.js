@@ -7,6 +7,7 @@ export function configure(config) {
       PLATFORM.moduleName('../components/checkbox'),
       PLATFORM.moduleName('../components/combobox'),
       PLATFORM.moduleName('../components/date-picker'),
+      PLATFORM.moduleName('../components/calendar'),
     ]
   );
 }
