@@ -1,6 +1,4 @@
 import { inject, bindable } from 'aurelia-framework';
-import { $dataMetaSchema } from '../../../../Users/saana/AppData/Local/Microsoft/TypeScript/4.2/node_modules/ajv/lib/ajv';
-import { months } from '../../node_modules/moment/moment';
 
 export class Calendar {
   @bindable
@@ -34,6 +32,7 @@ export class Calendar {
   selectedMonth = this.month;
   selectedYear = this.year;
 
+  dateSelected = this.formatDate(this.date);
   currentMonthYear = this.months[this.month] + ' ' + this.year;
 
 
@@ -66,4 +65,15 @@ export class Calendar {
     }
     this.currentMonthYear = this.months[this.month] + ' ' + this.year;
   }
+
+  formatDate(d) {
+    this.day = d.getDate();
+
+    this.month = d.getMonth() + 1;
+
+    this.year = d.getFullYear();
+
+    return this.day + ' / ' + this.month + ' / ' + this.year;
+  }
+
 }
