@@ -73,10 +73,12 @@ export class Calendar {
 
   populateDates(e) {
     this.daysOfMonth = new Set();
-    let amount_days = 31;
-    if(this.month === 1) {
+    let amount_days = new Date(this.year, this.month + 1, 0).getDate();
+    
+    //let amount_days = 31;
+    /*if(this.month === 1) {
       amount_days = 28;
-    }
+    }*/
 
     for(let i = 0; i < amount_days; i++) {
       this.daysOfMonth.add(i + 1);
