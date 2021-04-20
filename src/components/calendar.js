@@ -33,8 +33,10 @@ export class Calendar {
   selectedYear = this.year;
 
   dateSelected = this.formatDate(this.date);
-  currentMonthYear = this.months[this.month] + ' ' + this.year;
+  currentMonthYear = this.formatMonthYear(this.date);
 
+  daysOfMonth;
+  //monthDays = this.populateDates();
 
   attached() {
     this.isAttached = true;
@@ -44,8 +46,9 @@ export class Calendar {
   }
 
   calendarButtonClicked = (event) => {
-    console.log('test');
     this.visible = true;
+    this.populateDates();
+    //console.log(this.daysOfMonth);
   };
 
   goToNextMonth = (e) => {
@@ -55,6 +58,7 @@ export class Calendar {
       this.year++;
     }
     this.currentMonthYear = this.months[this.month] + ' ' + this.year;
+    this.populateDates();
   }
 
   goToPrevMonth = (e) => {
@@ -64,12 +68,40 @@ export class Calendar {
       this.year--;
     }
     this.currentMonthYear = this.months[this.month] + ' ' + this.year;
+    this.populateDates();
+  }
+
+  populateDates(e) {
+    this.daysOfMonth = new Set();
+    let amount_days = 31;
+    if(this.month === 1) {
+      amount_days = 28;
+    }
+
+    for(let i = 0; i < amount_days; i++) {
+      this.daysOfMonth.add(i + 1);
+    }
+
+  }
+
+  formatMonthYear(d) {
+    this.month = d.getMonth();
+
+    this.year = d.getFullYear();
+
+    return this.months[this.month] + ' ' + this.year;
   }
 
   formatDate(d) {
     this.day = d.getDate();
+    if(this.day < 10 ) {
+      this.day = '0' + this.day;
+    }
 
     this.month = d.getMonth() + 1;
+    if(this.month < 10 ) {
+      this.month = '0' + this.month;
+    }
 
     this.year = d.getFullYear();
 
